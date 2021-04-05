@@ -1,6 +1,5 @@
 import React from "react";
-import { gql } from "apollo-boost";
-import { useQuery } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import styled from "styled-components";
 import Movie from "../components/Movie";
 
