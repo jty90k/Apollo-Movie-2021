@@ -8,7 +8,7 @@ const client = new ApolloClient({
       isLiked: () => false, // 디폴트로 false 값 지니도록.
     },
     Mutation: {
-      likeMovie: (_, { id }, { cache }) => {
+      toggleLikeMovie: (_, { id, isLiked }, { cache }) => {
         cache.modify({
           id: `Movie:${id}`,
           fields: {
