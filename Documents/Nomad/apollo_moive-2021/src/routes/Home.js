@@ -3,8 +3,6 @@ import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/client";
 import styled from "styled-components";
 import Movie from "../components/Movie";
-// JavaScrip에 GraphQL을 작성한다. 그러나 JavaScript는 GraphQL을 이해하지 못한다.
-// query 작성, query는 component 바깥에 위치한다.
 
 const GET_MOVIES = gql`
   {
@@ -46,6 +44,15 @@ const Loading = styled.div`
   margin-top: 10px;
 `;
 
+const Movies = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 25px;
+  width: 60%;
+  position: relative;
+  top: -50px;
+`;
+
 //component
 //포스터 만들기
 export default () => {
@@ -57,9 +64,13 @@ export default () => {
         <Subtitle>I Love GraphQL</Subtitle>
       </Header>
       {loading && <Loading>Loading ...</Loading>}
-      {!loading &&
-        data.movies &&
-        data.movies.map((m) => <Movie key={m.id} id={m.id} />)}
+      {!loading && data.movies && (
+        <Movies>
+          {data.movies.map((m) => (
+            <Movie key={m.id} id={m.id} bg={m.medium_cover_image} />
+          ))}
+        </Movies>
+      )}
     </Container>
   );
 };
